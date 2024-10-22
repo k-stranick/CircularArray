@@ -16,8 +16,6 @@ public class CircularArrayQueue<E> implements Queue<E> {
 		front = rear = size = 0;
 	}
 
-
-
 	@Override
 	public void enqueue(E it) throws IllegalStateException {
 		if (size == listArray.length) {
@@ -30,7 +28,10 @@ public class CircularArrayQueue<E> implements Queue<E> {
 
 	@Override
 	public E dequeue() {
-		if (size == 0) return null;
+		if (size == 0){
+			System.out.println("Queue is empty");
+			return null;
+		}
 		E it = listArray[front];
 		listArray[front] = null; // Help garbage collection
 		front = (front + 1) % listArray.length;
@@ -49,3 +50,5 @@ public class CircularArrayQueue<E> implements Queue<E> {
 		return size;
 	}
 }
+
+
