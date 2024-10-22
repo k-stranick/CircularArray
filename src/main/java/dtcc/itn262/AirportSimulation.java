@@ -12,7 +12,7 @@ public class AirportSimulation {
 	}
 
 	private void loadAirplanes() { //populating the queues with airplanes
-		slowPrint("Loading Airplane queues...\n",100);
+		slowPrint("Loading Airplane queues...\n",50);
 		runway1.enqueue(new Airplane("451", "American Airlines"));
 		runway1.enqueue(new Airplane("1561", "United Airlines"));
 		runway1.enqueue(new Airplane("3134", "United Airlines"));
@@ -21,7 +21,7 @@ public class AirportSimulation {
 		runway2.enqueue(new Airplane("1351", "American Airlines"));
 		runway2.enqueue(new Airplane("1134", "United Airlines"));
 		runway2.enqueue(new Airplane("1234", "Southwest Airlines\n"));
-		slowPrint("Planes are ready for take off!\n", 100);
+		slowPrint("Planes are ready for take off!\n", 50);
 	}
 
 	public void startSimulation() throws InterruptedException {
@@ -30,18 +30,18 @@ public class AirportSimulation {
 			if (plane1Turn) {
 				if (runway1.length() > 0) {
 					Airplane plane = runway1.dequeue();
-					slowPrint(plane + " is taking off on runway 1\n", 100);
+					slowPrint(plane + " is taking off on runway 1\n", 30);
 				} else if (runway2.length() > 0) {
 					Airplane plane = runway2.dequeue();
-					slowPrint(plane + " is taking off on runway 2\n", 100);
+					slowPrint(plane + " is taking off on runway 2\n", 30);
 				}
 			} else {
 				if (runway2.length() > 0) {
 					Airplane plane = runway2.dequeue();
-					slowPrint(plane + " is taking off on runway 2\n", 100);
+					slowPrint(plane + " is taking off on runway 2\n", 30);
 				} else if (runway1.length() > 0) {
 					Airplane plane = runway1.dequeue();
-					slowPrint(plane + " is taking off on runway 1\n", 100);
+					slowPrint(plane + " is taking off on runway 1\n", 30);
 				}
 			}
 			plane1Turn = !plane1Turn;
@@ -55,16 +55,16 @@ public class AirportSimulation {
 	}
 
 	private void displayRunways() throws InterruptedException {
-		slowPrint("Currently waiting in runways:\n", 100);
+		slowPrint("Currently waiting in runways:\n", 50);
 
 		// Display runway '1' airplanes
 		System.out.println("Runway 1:");
 		int runway1Length = runway1.length();
 		for (int i = 0; i < runway1Length; i++) {
 			Airplane plane = runway1.dequeue();
-			slowPrint(plane.toString() + "\n", 50);  // Print each airplane slowly
+			slowPrint(plane.toString() + "\n", 30);  // Print each airplane slowly
 			runway1.enqueue(plane);     // Re-enqueue to preserve order
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		}
 
 		// Display runway 2 airplanes
@@ -72,9 +72,9 @@ public class AirportSimulation {
 		int runway2Length = runway2.length();
 		for (int i = 0; i < runway2Length; i++) {
 			Airplane plane = runway2.dequeue();
-			slowPrint(plane.toString() + "\n", 50);  // Print each airplane slowly
+			slowPrint(plane.toString() + "\n", 30);  // Print each airplane slowly
 			runway2.enqueue(plane);     // Re-enqueue to preserve order
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		}
 	}
 	// Method to simulate slow text printing like an old CRT monitor
@@ -88,5 +88,4 @@ public class AirportSimulation {
 			}
 		}
 	}
-
 }

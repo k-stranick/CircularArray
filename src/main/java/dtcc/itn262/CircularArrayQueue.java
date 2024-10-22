@@ -24,6 +24,8 @@ public class CircularArrayQueue<E> implements Queue<E> {
 		listArray[rear] = it;
 		rear = (rear + 1) % listArray.length;
 		size++;
+		System.out.println("Enqueue operation: front=" + front + ", rear=" + rear + ", size=" + size);
+
 	}
 
 	@Override
@@ -36,12 +38,17 @@ public class CircularArrayQueue<E> implements Queue<E> {
 		listArray[front] = null; // Help garbage collection
 		front = (front + 1) % listArray.length;
 		size--;
+		System.out.println("Dequeued: " + it + ", front: " + front + ", rear: " + rear + ", size: " + size);
+
 		return it;
 	}
 
 	@Override
 	public E frontValue() {
-		if (size == 0) return null;
+		if (size == 0){
+			System.out.println("Queue is empty");
+			return null;
+		}
 		return listArray[front];
 	}
 
